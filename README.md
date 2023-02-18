@@ -3,6 +3,7 @@ Prepared by Ormanova Ayagul and Zhailmina Ayaulym   BDA-2101
 Report
 GitHub account: https://github.com/Ayaulym2004/Advanced.git
 YouTube Video: https://youtu.be/Rib8QQWBFI4
+
 1. Introduction
 1.1 Problem
 With the development of technology, more and more books and documents in the field of sciences are moving to digital format. Mathematics is widely used in many fields of science, such as physics, engineering, medicine and economics. One of the key tasks is the analysis and understanding of digital documents. Optical Character Recognition (OCR) is used to improve the accuracy of character and number recognition in electronic books. However, the recognition of handwritten mathematical expressions is still a very difficult task in the field of computer vision.
@@ -16,7 +17,7 @@ The article (Zanibi) describes a mathematical expression recognition scheme (MER
 1.3 Current work (description of the work)
 Import Data.
 •	tensorflow 
-     •    tensorflow-gpu
+•    tensorflow-gpu
 •	cv2
 •	matplotlib 
 •	tensorflow-datasets 
@@ -28,33 +29,26 @@ types of writing, as well as addition and subtraction signs with dimensions of 3
 Construct Training data. 
 To train the data using a convolutional neural network (CNN), the dataset needs to be reshaped since CNNs work with two-dimensional data. The labels column is first assigned to the variable y_train, then the labels column is dropped from the dataset, and the remaining data is reshaped to 30 by 30, making it suitable for the CNN.
 To fit CNN to the data, the code uses the provided lines of code. After the training is completed, the resulting model can be saved as a JSON file, which can be used for future forecasts without having to retrain the model every time for three hours. The following code can be used to save the trained model as a JSON file.
- 
 Construct Testing data. 
 To use the trained model to solve handwritten equations, the first step is to import the saved model using the provided line of code. Next, an input image containing a handwritten equation is needed. The image is then converted to a binary image and inverted if the digits or symbols are in black. The code uses the 'findContour' function to obtain the contours of the image, with the contours obtained from left to right by default.
 The bounding rectangle for each contour is then obtained, and if there are multiple contours for the same digit or symbol, the code checks if the bounding rectangles overlap. If they do overlap, the smaller rectangle is discarded. The remaining bounding rectangles are then resized to 30 by 30.
 Using the trained model, the corresponding digit or symbol for each bounding rectangle is predicted and stored in a string. The 'eval' function is then used on the string to solve the equation.
+
 2. Data and methods 
 Dataset downloaded from kaggle, it contains ~100.000 handwritten math symbols, but for our problem we choosed only few symbols (0-10, +, - and *), because some of them are very similar (for example 1 and /)
 This is a example of set of Sigma, a lot of pictures with the same symbol but written in different ways, with inaccuracies, etc.
-
 For our case, we chose Sequential model with 4 layers, where the first layer is the input with dimensions 30*30=900 (for pixel-by-pixel data inputs into the model), the second and third layers are intermediate with sizes 128 and 64. The last layer is output, the size of the number of characters we need.
-
 The sequential model is a good option for static output, since when we get the prediction result, we will get an array with str and float, where the first is our category (symbol), and float is the probability of a match
+
 3. Results
 We achieved the best result with 10 epochs and a test data size of 1\2 of the total number of data. Thus the result is:
 loss: 0.1711
 accuracy: 0.9501
 val_loss: 0.3078
 val_accuracy: 0.9372
-
 To fully test the work, we wrote a script that will use our model to determine the numerical expression and calculate the answer (for example, 2+3)
 The logic and operation of the script is:
-1. Getting an image and adding a black and white filter 
-2. definition of shaded areas and their separation from each other, definition of erroneous areas
-3. running each section through the model
-4. composing an expression as a string and solving via eval()
-
-
+Getting an image and adding a black and white filter definition of shaded areas and their separation from each other, definition of erroneous areasrunning each section through the model composing an expression as a string and solving via eval()
 
 4. Discussion
 4.1 Critical review of results
