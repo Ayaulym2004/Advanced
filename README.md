@@ -59,7 +59,7 @@ The logic and operation of the script is:
 2) definition of shaded areas and their separation from each other, definition of erroneous areas
 3) running each section through the model
 4) composing an expression as a string and solving via eval()
-![image](https://user-images.githubusercontent.com/125453394/219864304-30dd1d62-ccf3-429a-ad11-49c42a5a97af.png)
+![image_2023-02-18_17-51-07](https://user-images.githubusercontent.com/125453394/219864431-5fe9db85-ec0a-4ec9-b4f4-4e4e92b37896.png)
 
 4. Discussion
 4.1 Critical review of results
