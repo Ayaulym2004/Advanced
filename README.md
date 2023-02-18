@@ -1,5 +1,5 @@
 # Advanced
-[Final_project.pdf](https://github.com/Ayaulym2004/Advanced/files/10774012/Final_project.pdf)
+[Final_project.pdf](https://github.com/Ayaulym2004/Advanced/files/10774051/Final_project.pdf)
 
 Prepared by Ormanova Ayagul and Zhailmina Ayaulym   BDA-2101
 Report
@@ -19,7 +19,7 @@ The article (Zanibi) describes a mathematical expression recognition scheme (MER
 1.3 Current work (description of the work)
 Import Data.
 •	tensorflow 
-•    tensorflow-gpu
+• tensorflow-gpu
 •	cv2
 •	matplotlib 
 •	tensorflow-datasets 
@@ -31,6 +31,7 @@ types of writing, as well as addition and subtraction signs with dimensions of 3
 Construct Training data. 
 To train the data using a convolutional neural network (CNN), the dataset needs to be reshaped since CNNs work with two-dimensional data. The labels column is first assigned to the variable y_train, then the labels column is dropped from the dataset, and the remaining data is reshaped to 30 by 30, making it suitable for the CNN.
 To fit CNN to the data, the code uses the provided lines of code. After the training is completed, the resulting model can be saved as a JSON file, which can be used for future forecasts without having to retrain the model every time for three hours. The following code can be used to save the trained model as a JSON file.
+![image_2023-02-18_17-46-07](https://user-images.githubusercontent.com/125453394/219864239-73602ee1-7952-44b9-ae1c-5ddc0b53690f.png)
 Construct Testing data. 
 To use the trained model to solve handwritten equations, the first step is to import the saved model using the provided line of code. Next, an input image containing a handwritten equation is needed. The image is then converted to a binary image and inverted if the digits or symbols are in black. The code uses the 'findContour' function to obtain the contours of the image, with the contours obtained from left to right by default.
 The bounding rectangle for each contour is then obtained, and if there are multiple contours for the same digit or symbol, the code checks if the bounding rectangles overlap. If they do overlap, the smaller rectangle is discarded. The remaining bounding rectangles are then resized to 30 by 30.
@@ -39,21 +40,26 @@ Using the trained model, the corresponding digit or symbol for each bounding rec
 2. Data and methods 
 Dataset downloaded from kaggle, it contains ~100.000 handwritten math symbols, but for our problem we choosed only few symbols (0-10, +, - and *), because some of them are very similar (for example 1 and /)
 This is a example of set of Sigma, a lot of pictures with the same symbol but written in different ways, with inaccuracies, etc.
+![image](https://user-images.githubusercontent.com/125453394/219864257-77d550ff-766e-48a3-a6b1-d276fc262684.png)
 For our case, we chose Sequential model with 4 layers, where the first layer is the input with dimensions 30*30=900 (for pixel-by-pixel data inputs into the model), the second and third layers are intermediate with sizes 128 and 64. The last layer is output, the size of the number of characters we need.
+![image](https://user-images.githubusercontent.com/125453394/219864270-8b99b017-3a1a-45dd-a18d-48365d8e569b.png)
 The sequential model is a good option for static output, since when we get the prediction result, we will get an array with str and float, where the first is our category (symbol), and float is the probability of a match
 
 3. Results
 We achieved the best result with 10 epochs and a test data size of 1\2 of the total number of data. Thus the result is:
-loss: 0.1711
-accuracy: 0.9501
-val_loss: 0.3078
-val_accuracy: 0.9372
+loss: 0.2998 
+accuracy: 0.9144 
+val_loss: 0.7401 
+val_accuracy: 0.8603
+![image](https://user-images.githubusercontent.com/125453394/219864296-9f04fcfc-027b-4b46-8ea7-760601a6ad0f.png)
+![image](https://user-images.githubusercontent.com/125453394/219864298-aceea547-e96b-40d6-b9c6-9e624df71ad1.png)
 To fully test the work, we wrote a script that will use our model to determine the numerical expression and calculate the answer (for example, 2+3)
 The logic and operation of the script is:
 1) Getting an image and adding a black and white filter 
 2) definition of shaded areas and their separation from each other, definition of erroneous areas
 3) running each section through the model
 4) composing an expression as a string and solving via eval()
+![image](https://user-images.githubusercontent.com/125453394/219864304-30dd1d62-ccf3-429a-ad11-49c42a5a97af.png)
 
 4. Discussion
 4.1 Critical review of results
