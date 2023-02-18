@@ -1,4 +1,6 @@
 # Advanced
+[Final_project.pdf](https://github.com/Ayaulym2004/Advanced/files/10774012/Final_project.pdf)
+
 Prepared by Ormanova Ayagul and Zhailmina Ayaulym   BDA-2101
 Report
 GitHub account: https://github.com/Ayaulym2004/Advanced.git
