@@ -50,7 +50,10 @@ val_loss: 0.3078
 val_accuracy: 0.9372
 To fully test the work, we wrote a script that will use our model to determine the numerical expression and calculate the answer (for example, 2+3)
 The logic and operation of the script is:
-Getting an image and adding a black and white filter definition of shaded areas and their separation from each other, definition of erroneous areasrunning each section through the model composing an expression as a string and solving via eval()
+1) Getting an image and adding a black and white filter 
+2) definition of shaded areas and their separation from each other, definition of erroneous areas
+3) running each section through the model
+4) composing an expression as a string and solving via eval()
 
 4. Discussion
 4.1 Critical review of results
